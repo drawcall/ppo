@@ -1,5 +1,4 @@
-# PPO
-
+![logo](https://a-jie.github.io/ppo/docs/imgs/logo2.png)
 
 ## Overview
 
