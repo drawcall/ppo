@@ -1,7 +1,7 @@
 {
   "name": "ppo",
   "description": "JavaScript's functional programming helper library.",
-  "homepage": "https://github.com/a-jie/ppo",
+  "homepage": "https://a-jie.github.io/ppo/",
   "keywords": [
     "util",
     "functional",
@@ -13,7 +13,7 @@
     "url": "git://github.com/a-jie/ppo.git"
   },
   "main": "ppo.min.js",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "devDependencies": {},
   "scripts": {
     "build": "uglifyjs ppo.js -o ppo.min.js -c -m --source-map"
