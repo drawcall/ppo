@@ -9,7 +9,6 @@ body {
 
 p {
 	margin: 20px 0;
-	width: 550px;
 }
 
 a,
@@ -103,13 +102,13 @@ code {
 pre {
 	font-size: 12px;
 	padding: 4px 0 3px 15px;
-	border-left: 5px solid #1338fb;
+	border-left: 5px solid #0b85ff;
 	margin: 0px 0 12px;
 	background: #eee;
 }
 
 .button{
-	background-color: #1338fb;
+	background-color: #0b85ff;
     border: none;
     color: white;
 	cursor: pointer;
@@ -141,6 +140,10 @@ pre {
 
 .interface {
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, sans-serif !important;
+}
+
+#introduction{
+	margin: 8px 0;
 }
 
 div#sidebar {
@@ -206,12 +209,15 @@ input#function_filter {
 
 div.container {
 	width: 650px;
-	margin: 40px 0 50px 260px;
+	margin: 20px 0 50px 260px;
 }
 
 img#logo {
-	
-	height: 69px;
+	height: 100px;
+}
+
+p.instxt{
+	margin: 0;
 }
 
 div.warning {
