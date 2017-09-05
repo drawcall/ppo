@@ -2,8 +2,12 @@
 
 ## Overview
 
-Every frontend developer has written his own utils library, and we often encapsulate methods that are often forgotten and easy to forget. ppo is a utility-belt library for JavaScript. It and lodash underscore lazy.js almost no coupling.
-I sorted out the most frequently used function functions in everyday development. These functions are almost ubiquitous in your development, and they are not found in lodash underscore. Most of the code comes from the stackoverflow site in the high score answer, here to pay tribute to the original author.
+Every frontend developer has written his own utils library, and we often write methods that are easily forgotten and highly used. [ppo](https://a-jie.github.io/ppo/) is a super small and useful utils library for JavaScript. It and [lodash](https://github.com/lodash/lodash) [underscore](https://github.com/jashkenas/underscore) [lazy.js](https://github.com/dtao/lazy.js) almost no coupling.
+I sorted out the most frequently used function functions in everyday development. These functions are almost ubiquitous in your development, and they are not found in lodash underscore. 
+
+Most of the code comes from the [stackoverflow](https://stackoverflow.com/) site in the high score answer, here to pay tribute to the original author.
+
+ppo little poor, gzip less than **3k**, so a library you can use it anytime, anywhere without worrying about anything.
 
 #### View the document please visit [https://a-jie.github.io/ppo/](https://a-jie.github.io/ppo/)
 
