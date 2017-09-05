@@ -62,22 +62,36 @@
     * From https://stackoverflow.com/questions/10964966/detect-ie-version-prior-to-v9-in-javascript
     */
     ppo.isIE = function () {
-        return navigator.userAgent.toLowerCase().indexOf('msie') != -1;
+        return ppo.ieVer() > 0;
     }
 
     /**
     * ie version
-    * From https://stackoverflow.com/questions/19999388/check-if-user-is-using-ie-with-jquery
+    * From https://codepen.io/gapcode/pen/vEJNZN
+    * IE 10 ua = 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)';
+    * IE 11 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko';
+    * Edge 12 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36 Edge/12.0';
+    * Edge 13 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586';
     */
     ppo.ieVersion = ppo.ieVer = function () {
         var ua = window.navigator.userAgent;
-        var msie = ua.indexOf("MSIE ");
-
-        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
-            return parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)));
-        } else {
-            return -1;
+        var msie = ua.indexOf('MSIE ');
+        if (msie > 0) {
+            return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
         }
+
+        var trident = ua.indexOf('Trident/');
+        if (trident > 0) {
+            var rv = ua.indexOf('rv:');
+            return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+        }
+
+        var edge = ua.indexOf('Edge/');
+        if (edge > 0) {
+            return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
+        }
+
+        return -1;
     }
 
     /************************************************************************
@@ -104,34 +118,23 @@
     }
 
     /**
-    * ppo.logs('+10', 1, 2);
+    * ppo.logs('+onlyid', '+10', 1, 2);
     */
     ppo.logs = function () {
         if (window.console && window.console.log) {
             var args = arguments;
-            var times = args[0];
-            var now;
+            var onlyid = args[0] + '';
+            var times = args[1] + '';
             var logsCache = ppo._cache.logs;
 
-            if (typeof times == 'string' && times.indexOf('+') == 0) {
+            if (times.indexOf('+') == 0) {
                 times = parseInt(times);
-                now = (new Date()).getTime();
+                if (!logsCache[onlyid]) logsCache[onlyid] = {};
+                if (!logsCache[onlyid].once) logsCache[onlyid].once = 1;
 
-                if (!logsCache.once) logsCache.once = 1;
-                if (!logsCache.time) logsCache.time = (new Date()).getTime();
-
-                if (logsCache.once <= times) {
-                    console.log.apply(console, Array.prototype.slice.call(args, 1));
-                    logsCache.once++;
-                    logsCache.time = now;
-                }else{
-                    var delay = now - logsCache.time;
-                    logsCache.time = now;
-
-                    if (delay > 100) {
-                        logsCache.time = 0;
-                        logsCache.once = 1;
-                    }
+                if (logsCache[onlyid].once <= times) {
+                    console.log.apply(console, Array.prototype.slice.call(args, 2));
+                    logsCache[onlyid].once++;
                 }
             } else {
                 console.log(args);
@@ -286,35 +289,34 @@
     * change by a-jie
     */
     ppo.setCookie = function (name, value, option) {
-        var expires = '';
         var path = "; path=/";
-        var val = encodeURIComponent(value);
+        var val = option.raw && option.raw ? value : encodeURIComponent(value);
+        var cookie = encodeURIComponent(name) + "=" + val;
 
         if (option) {
             if (option.days) {
                 var date = new Date();
                 var ms = option.days * 24 * 3600 * 1000;
                 date.setTime(date.getTime() + ms);
-                str += "; expires=" + date.toGMTString();
+                cookie += "; expires=" + date.toGMTString();
             } else if (option.hour) {
                 var date = new Date();
                 var ms = option.hour * 3600 * 1000;
                 date.setTime(date.getTime() + ms);
-                str += "; expires=" + date.toGMTString();
+                cookie += "; expires=" + date.toGMTString();
             } else {
                 var date = new Date();
                 var ms = longTime * 365 * 24 * 3600 * 1000;
                 date.setTime(date.getTime() + ms);
-                str += "; expires=" + date.toGMTString();
+                cookie += "; expires=" + date.toGMTString();
             }
 
-            if (option.path) path = "; path=" + option.path;
-            if (option.domain) str += "; domain=" + option.domain;
-            if (option.secure) str += "; true";
-            if (option.raw) val = value;
+            if (option.path) cookie += "; path=" + option.path;
+            if (option.domain) cookie += "; domain=" + option.domain;
+            if (option.secure) cookie += "; true";
         }
 
-        document.cookie = encodeURIComponent(name) + "=" + val + expires + path;
+        document.cookie = cookie;
     }
 
     ppo.getCookie = function (name) {

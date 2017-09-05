@@ -97,11 +97,14 @@ $(function () {
             "var cookie = ppo.getCookie('pid'); \n",
             "ppo.log(cookie); or ppo.log(cookie, {color:'#fff', 'background':'#ff0000'});"
         ],
-        'example': '<div class="button log">open log</div>',
-        'script': function () {
+        'example': '<div class="button">open log</div>',
+        'script': function (ele) {
             var style = { 'color': '#fff', 'background': '#ff0000' };
-            $('.log').click(function () {
-                setInterval(function () {
+            var id = 0;
+
+            ele.find('.button').click(function () {
+                clearInterval(id);
+                id = setInterval(function () {
                     var random = ppo.randomA2B(10000, 90000, 'int');
                     var isMobile = ppo.isMobile();
                     ppo.log('log :: isMobile-' + isMobile + ' random-' + random, style);
@@ -114,24 +117,25 @@ $(function () {
     // logs
     addFragment({
         'name': 'logs',
-        'api': 'ppo.logs(\'+10\', 1, 2)',
+        'api': 'ppo.logs(\'+onlyid\',\'+10\', 1, 2)',
         'introduce': 'In setInterval or requestAnimationFrame functions, a fixed number of log is performed only.',
         'code': [
             "setInterval(function(){ \n",
-            "   // Print only 10 times \n",
-            "   ppo.logs('+10', 1, 2, 'hello', abc); \n",
+            "   //Onlyid is +abc, print only 10 times \n",
+            "   ppo.logs('+abc', '+15', 1, 2, 'hello', abc); \n",
             "}, 20);"
         ],
-        'example': '<div class="button logs">start log</div> Please press f12 to open the console panel',
-        'script': function () {
+        'example': '<div class="button">start log</div> Please press f12 to open the console panel',
+        'script': function (ele) {
             var id = 0;
-
-            $('.logs').click(function () {
+            var onlyid;
+            ele.find('.button').click(function () {
                 var index = 0;
+                onlyid = ppo.randomA2B(1, 9999, true);
                 clearInterval(id);
 
                 id = setInterval(function () {
-                    ppo.logs('+10', 'hello', index++);
+                    ppo.logs('+' + onlyid, '+15', 'hello', ++index);
                 }, 20);
             });
 
@@ -141,12 +145,22 @@ $(function () {
     // removeConsole
     addFragment({
         'name': 'removeConsole',
-        'api': 'ppo.removeConsole()',
+        'api': 'ppo.removeConsole(clear?)',
         'introduce': 'Clear the console information to make the console cleaner and just keep the console.error',
         'code': [
             "ppo.removeConsole(); \n",
             "ppo.removeConsole('clear');"
-        ]
+        ],
+        'example': '<div class="button">remove console</div> Please press f12 to open the console panel',
+        'script': function (ele) {
+            ele.find('.button').click(function () {
+                console.log(1);
+                console.log(2);
+                setTimeout(function () {
+                    ppo.removeConsole('clear');
+                }, 300);
+            });
+        }
     });
 
     //------------------ Bom and Dom -----------------
@@ -164,9 +178,9 @@ $(function () {
             "   setTimeout(function () { ppo.open('https://github.com'); }, 200); \n",
             "}",
         ],
-        'example': '<div class="button open">open github</div>',
-        'script': function () {
-            $('.open').click(function () {
+        'example': '<div class="button">open github</div>',
+        'script': function (ele) {
+            ele.find('.button').click(function () {
                 if (ppo.isMobile()) {
                     ppo.open('https://github.com');
                 } else {
@@ -240,7 +254,21 @@ $(function () {
             "ppo.setCookie('time', 123, { hour: 12 }); \n",
             "ppo.setCookie('a', 'helloworld', { domain: '.github.com' }); \n",
             "ppo.setCookie('code', '%3Ca%3E%20sd', { raw: true }); //do not encode",
-        ]
+        ],
+        'example': '<input placeholder="input a word!"></input><div class="button">set cookie</div> <span></span>',
+        'script': function (ele) {
+            ele.find('.button').click(function () {
+                var val = $(this).prev().val();
+                if (!val) return;
+
+                ppo.setCookie('ppo_cookie', $(this).prev().val(), {
+                    hour: 12,
+                    path: '../'
+                });
+
+                alert('set success! please see getCookie!');
+            });
+        }
     });
 
     // getCookie 
@@ -249,8 +277,15 @@ $(function () {
         'api': 'ppo.getCookie(name)',
         'introduce': 'Get the browser cookie.',
         'code': [
-            "ppo.setCookie('username');"
-        ]
+            "ppo.getCookie('username');"
+        ],
+        'example': '<div class="button">get cookie</div> <span>ppo_cookie :: </span>',
+        'script': function (ele) {
+            var preText = ele.find('.button').next().text();
+            ele.find('.button').click(function () {
+                ele.find('.button').next().text(preText + ppo.getCookie('ppo_cookie'));
+            });
+        }
     });
 
     // deleteCookie 
@@ -260,7 +295,14 @@ $(function () {
         'introduce': 'delete the browser cookie.',
         'code': [
             "ppo.delCookie('username');"
-        ]
+        ],
+        'example': '<div class="button">delete cookie</div>',
+        'script': function (ele) {
+            ele.find('.button').click(function () {
+                ppo.delCookie('ppo_cookie');
+                alert('delete success! please see getCookie!');
+            });
+        }
     });
 
 
@@ -278,11 +320,11 @@ $(function () {
             "ppo.randomFromA2B(1, 20) \n",
             "ppo.randomFromA2B(1, 20, true)"
         ],
-        'example': '<div class="button a2b">get random</div> <span>[1-1000](int) :: </span>',
-        'script': function () {
-            var pre = $('.a2b').next().text();
-            $('.a2b').click(function () {
-                var text = pre + ppo.randomA2B(1, 1000, true);
+        'example': '<div class="button">get random</div> <span>[1-1000](int) :: </span>',
+        'script': function (ele) {
+            var preText = ele.find('.button').next().text();
+            ele.find('.button').click(function () {
+                var text = preText + ppo.randomA2B(1, 1000, true);
                 $(this).next().text(text);
             });
         }
@@ -296,11 +338,11 @@ $(function () {
         'code': [
             "ppo.randomFromArray([1, 3, 9, 20]) \n"
         ],
-        'example': '<div class="button rfa">get random</div> <span>[1, 3, 9, 20, \'a\', \'b\'] :: </span>',
-        'script': function () {
-            var pre = $('.rfa').next().text();
-            $('.rfa').click(function () {
-                var text = pre + ppo.randomFromArray([1, 3, 9, 20, 'a', 'b']);
+        'example': '<div class="button">get random</div> <span>[1, 3, 9, 20, \'a\', \'b\'] :: </span>',
+        'script': function (ele) {
+            var preText = ele.find('.button').next().text();
+            ele.find('.button').click(function () {
+                var text = preText + ppo.randomFromArray([1, 3, 9, 20, 'a', 'b']);
                 $(this).next().text(text);
             });
         }
@@ -314,12 +356,12 @@ $(function () {
         'code': [
             "ppo.randomColor() \n"
         ],
-        'example': '<div class="button rcolor">get random</div> <span>color :: </span>',
-        'script': function () {
-            var pre = $('.rcolor').next().text();
-            $('.rcolor').click(function () {
+        'example': '<div class="button">get random</div> <span>color :: </span>',
+        'script': function (ele) {
+            var preText = ele.find('.button').next().text();
+            ele.find('.button').click(function () {
                 var color = ppo.randomColor();
-                var text = pre + color;
+                var text = preText + color;
                 $(this).next().text(text);
                 $(this).css('background', color);
             });
@@ -334,11 +376,12 @@ $(function () {
         'code': [
             "ppo.randomKey(12) \n"
         ],
-        'example': '<div class="button rkey">get random</div> <span>key :: </span>',
-        'script': function () {
-            var pre = $('.rkey').next().text();
-            $('.rkey').click(function () {
-                var text = pre + ppo.randomKey(12);
+        'example': '<div class="button">get random</div> <span>key :: </span>',
+        'script': function (ele) {
+            var preText = ele.find('.button').next().text();
+
+            ele.find('.button').click(function () {
+                var text = preText + ppo.randomKey(12);
                 $(this).next().text(text);
             });
         }
@@ -352,11 +395,11 @@ $(function () {
         'code': [
             "ppo.floor(Math.random(), 5) \n"
         ],
-        'example': '<div class="button rfloor">get result</div> <span>result :: </span>',
-        'script': function () {
-            var pre = $('.rfloor').next().text();
-            $('.rfloor').click(function () {
-                var text = pre + ppo.floor(Math.random(), 5);
+        'example': '<div class="button">get result</div> <span>result :: </span>',
+        'script': function (ele) {
+            var preText = ele.find('.button').next().text();
+            ele.find('.button').click(function () {
+                var text = preText + ppo.floor(Math.random(), 5);
                 $(this).next().text(text);
             });
         }
@@ -388,11 +431,11 @@ $(function () {
             "ppo.loadjs('http://x.com/a.js', 'only_id', callback); \n",
             "ppo.loadjs(['./a.js','./b.js','./c.js'], callback); \n"
         ],
-        'example': '<a href="https://github.com/SmartDoubleXiao/multipleClick" target="_blank">a jQuery plugin for multiple click</a><span style="color:#000;"></span><div class="button mclick">three click</div>',
-        'script': function () {
+        'example': '<a href="https://github.com/SmartDoubleXiao/multipleClick" target="_blank">a jQuery plugin for multiple click</a><span style="color:#000;"></span><div class="button">three click</div>',
+        'script': function (ele) {
             ppo.loadjs('./docs/js/mclick.js', function () {
-                $('.mclick').prev().text(' is loaded!');
-                $('.mclick').mClick(300, 3, function () {
+                ele.find('.button').prev().text(' is loaded!');
+                ele.find('.button').mClick(300, 3, function () {
                     alert('press three times');
                 });
             });
@@ -462,13 +505,14 @@ $(function () {
         'code': [
             "ppo.hash('sdf%$sdfMnjjskds23'); \n"
         ],
-        'example': '<input placeholder="please input!" class="hashinput"></input><div class="button hash">get hash</div> <span>hash :: </span>',
-        'script': function () {
-            var pre = $('.rfloor').next().text();
-            $('.hashinput').val('sdf%$sdfMnjjskds23');
-            $('.hash').click(function () {
-                var val = $('.hashinput').val();
-                var hash = pre + ppo.hash(val);
+        'example': '<input placeholder="please input!"></input><div class="button">get hash</div> <span>hash :: </span>',
+        'script': function (ele) {
+            var preText = ele.find('.button').next().text();
+            ele.find('input').val('sdf%$sdfMnjjskds23');
+
+            ele.find('.button').click(function () {
+                var val = ele.find('input').val();
+                var hash = preText + ppo.hash(val);
                 $(this).next().text(hash);
             });
         }
@@ -546,8 +590,9 @@ function addChapter(data) {
 
 // add fragment
 function addFragment(data) {
+    var id = data.name.replace(/\s/ig, "");
     var fragment = [
-        '<p id="' + data.name.replace(/\s/ig, "") + '">',
+        '<p id="' + id + '">',
         '   <b class="header"><span>✿</span> ' + data.name + '</b>',
         '   <code>' + data.api + '</code>',
         '   <br/>',
@@ -557,11 +602,11 @@ function addFragment(data) {
     ].join('');
 
     if (data.example) {
-        fragment += '<b>example : </b><span style="color:#777;">' + data.example + '</span>';
+        fragment += '<b>example : </b><span style="color:#777;" class="' + id + '-example">' + data.example + '</span>';
     }
 
     if (data.script) {
-        setTimeout(data.script, 50);
+        setTimeout(function (pid) { data.script($('.' + (pid || id) + '-example')); }, 50, id);
     }
 
     var side = [
