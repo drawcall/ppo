@@ -11,7 +11,7 @@ $(function () {
         'api': 'ppo.isIOS() or ppo.isIos()',
         'introduce': 'Check whether the mobile device is an IOS device.',
         'code': [
-            "if(ppo.isIOS()) { $('#con').addClass('ios'); }"
+            "if(ppo.isIOS()) { console.log('this is ios'); }"
         ],
         'example': 'detecting is ios - ' + ppo.isIOS()
     });
@@ -22,7 +22,7 @@ $(function () {
         'api': 'ppo.isAndroid()',
         'introduce': 'Check whether the mobile device is an Android device.',
         'code': [
-            "if(ppo.isAndroid()) { $('#con').addClass('android'); }"
+            "if(ppo.isAndroid()) { console.log('this is android'); }"
         ],
         'example': 'detecting is android - ' + ppo.isAndroid()
     });
@@ -33,7 +33,7 @@ $(function () {
         'api': 'ppo.isIPad()',
         'introduce': 'Check whether the mobile device is an IPad.',
         'code': [
-            "if(ppo.isIPad()) { $('#con').addClass('ipad'); }"
+            "if(ppo.isIPad()) { console.log('this is ipad'); }"
         ],
         'example': 'detecting is ipad - ' + ppo.isIPad()
     });
@@ -44,7 +44,7 @@ $(function () {
         'api': 'ppo.isMobile()',
         'introduce': 'Check if the current device is a mobile device.',
         'code': [
-            "if(ppo.isMobile()) { $('#con').show(); }"
+            "if(ppo.isMobile()) { document.querySelector('.title').style.color = '#fff'; }"
         ],
         'example': 'detecting is Mobile - ' + ppo.isMobile()
     });
@@ -55,7 +55,7 @@ $(function () {
         'api': 'ppo.isPC()',
         'introduce': 'Check whether the current device is an PC device.',
         'code': [
-            "if(ppo.isPC()) { $('#con').show(); }"
+            "if(ppo.isPC()) { console.log('this is pc'); }"
         ],
         'example': 'detecting is PC - ' + ppo.isPC()
     });
@@ -99,8 +99,13 @@ $(function () {
         ],
         'example': '<div class="button log">open log</div>',
         'script': function () {
+            var style = { 'color': '#fff', 'background': '#ff0000' };
             $('.log').click(function () {
-                ppo.log(ppo.randomA2B(10000, 90000, true), { 'color': '#fff', 'background': '#ff0000' });
+                setInterval(function () {
+                    var random = ppo.randomA2B(10000, 90000, 'int');
+                    var isMobile = ppo.isMobile();
+                    ppo.log('log :: isMobile-' + isMobile + ' random-' + random, style);
+                }, 1000 / 3);
                 $('body').scrollTop(0);
             });
         }
@@ -155,14 +160,18 @@ $(function () {
         'api': 'ppo.open(url)',
         'introduce': 'js opens a new page without being blocked by the browser.',
         'code': [
-            "$('a').click(function(){ \n",
+            "btn.onclick = function(){ \n",
             "   setTimeout(function () { ppo.open('https://github.com'); }, 200); \n",
-            "});",
+            "}",
         ],
         'example': '<div class="button open">open github</div>',
         'script': function () {
             $('.open').click(function () {
-                setTimeout(function () { ppo.open('https://github.com'); }, 200);
+                if (ppo.isMobile()) {
+                    ppo.open('https://github.com');
+                } else {
+                    setTimeout(function () { ppo.open('https://github.com'); }, 200);
+                }
             });
         }
     });
@@ -481,7 +490,7 @@ $(function () {
         'api': 'ppo.judge(v, vals, strict?)',
         'introduce': 'A number of conditions to determine, like x == a || x == b || x == c ..., strict is ===.',
         'code': [
-            "if(ppo.judeg(navigator.userAgent, ['iPad','iPhone','iPod'], true){  \n",
+            "if(ppo.judge(navigator.userAgent, ['iPad','iPhone','iPod'], true){  \n",
             "   console.log('is ios device!');  \n",
             "}"
         ]

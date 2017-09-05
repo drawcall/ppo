@@ -1,9 +1,7 @@
 /*
- * PPO 0.1.3
- * 
- * +++++++++ JavaScript grocery treasure chest +++++++++
- * All rights reserved.
- *
+ * PPO
+ * +++++++++ a utility-belt library for JavaScript +++++++++
+ * (c) 2011-2017 a-jie
  * https://github.com/a-jie
  */
 
