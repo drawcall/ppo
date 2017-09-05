@@ -117,12 +117,12 @@ $(function () {
     // logs
     addFragment({
         'name': 'logs',
-        'api': 'ppo.logs(\'+onlyid\',\'+10\', 1, 2)',
+        'api': 'ppo.logs(\'+onlyid\',\'+10\', arg1, arg2, ...)',
         'introduce': 'In setInterval or requestAnimationFrame functions, a fixed number of log is performed only.',
         'code': [
             "setInterval(function(){ \n",
             "   //Onlyid is +abc, print only 10 times \n",
-            "   ppo.logs('+abc', '+15', 1, 2, 'hello', abc); \n",
+            "   ppo.logs('+abc', '+15', a, 2, 'hello', abc); \n",
             "}, 20);"
         ],
         'example': '<div class="button">start log</div> Please press f12 to open the console panel',
@@ -135,7 +135,7 @@ $(function () {
                 clearInterval(id);
 
                 id = setInterval(function () {
-                    ppo.logs('+' + onlyid, '+15', 'hello', ++index);
+                    ppo.logs('+' + onlyid, '+15', 2, 'hello', 'onlyid::' + onlyid, ++index);
                 }, 20);
             });
 
