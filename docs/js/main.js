@@ -262,8 +262,7 @@ $(function () {
                 if (!val) return;
 
                 ppo.setCookie('ppo_cookie', $(this).prev().val(), {
-                    hour: 12,
-                    path: '../'
+                    hour: 12
                 });
 
                 alert('set success! please see getCookie!');
