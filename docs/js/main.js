@@ -544,7 +544,7 @@ $(function () {
     // hash 
     addFragment({
         'name': 'hash',
-        'api': 'ppo.hash()',
+        'api': 'ppo.hash(string)',
         'introduce': 'Generates a unique hasn code based on the input string',
         'code': [
             "ppo.hash('sdf%$sdfMnjjskds23'); \n"
