@@ -165,7 +165,7 @@ $(function () {
 
     //------------------ Bom and Dom -----------------
     addChapter({
-        'name': 'Bom and Dom'
+        'name': 'Global'
     });
 
     // open new url dont not blocked by browser 
@@ -592,7 +592,9 @@ $(function () {
         'code': [
             "ppo.trash['name'] = 'xxxx'; \n",
             "ppo.trash['end'] = (new Date()).getTime(); \n",
-            "ppo.trash['cache'] = {}; \n"
+            "ppo.trash['cache'] = {}; \n\n",
+            "ppo.trash.clear();  // All stored data will be cleared \n",
+            "ppo.trash.log();    // All stored data will be printed \n"
         ]
     });
 

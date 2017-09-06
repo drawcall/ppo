@@ -537,7 +537,20 @@
     /**
     * a trash object
     */
-    ppo.trash = {};
+    ppo.trash = {
+        clear: function () {
+            for (var key in ppo.trash) {
+                if (key !== 'log' && key !== 'clear')
+                    delete ppo.trash[key];
+            }
+        },
+        log: function () {
+            for (var key in ppo.trash) {
+                if (key !== 'log' && key !== 'clear')
+                    console.log('ppo.trash:: ', key, ppo.trash[key]);
+            }
+        }
+    };
 
     ppo.noop = function () { };
 
