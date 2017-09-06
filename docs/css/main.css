@@ -227,7 +227,7 @@ div.warning {
 }
 
 .link{
-	color:#0366d6;
+	color:#0366d6 !important;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5) and (max-width: 800px),
