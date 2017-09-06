@@ -185,6 +185,34 @@
         }
     };
 
+    /**
+    * setInterval func fix times
+    * https://stackoverflow.com/questions/2956966/javascript-telling-setinterval-to-only-fire-x-amount-of-times
+    */
+    ppo.setTimesout = function () {
+        var func = arguments[0];
+        var delay = arguments[1] === undefined ? 0 : parseFloat(arguments[1]);
+        var times = arguments[2] === undefined ? 1 : parseInt(arguments[2]);
+        var args = arguments.length > 3 ? Array.prototype.slice.call(arguments, 3) : null;
+        var target = { index: 0, times: times, over: false };
+
+        var id = setInterval(function () {
+            target.index++;
+            if (target.index > times) {
+                clearInterval(id);
+            } else {
+                if (target.index == times) target.over = true;
+                func.apply(target, args);
+            }
+        }, delay);
+
+        return id;
+    }
+
+    ppo.clearTimesout = function (id) {
+        clearInterval(id);
+    }
+
 
     /************************************************************************
     * Date

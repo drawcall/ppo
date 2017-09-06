@@ -13,7 +13,7 @@
     "url": "git://github.com/a-jie/ppo.git"
   },
   "main": "ppo.min.js",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "devDependencies": {},
   "scripts": {
     "build": "uglifyjs ppo.js -o ppo.min.js -c -m --source-map"

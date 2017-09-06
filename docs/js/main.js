@@ -190,6 +190,51 @@ $(function () {
         }
     });
 
+    // setInterval func fix times
+    addFragment({
+        'name': 'setTimesout',
+        'api': 'ppo.setTimesout(func, delay, times, ...args)',
+        'introduce': 'Similar to window.setTimeout, but you can repeat a fixed number of times a function. The function of this is pointing to <code style="margin-left:5px;">{"index":index ,"times":times, "over":over}</code>.',
+        'code': [
+            "var id = ppo.setTimesout(function(word){ \n",
+            "    console.log(word); \n",
+            "    console.log(this);  // log {index: 1 ,times: 8, over: false}\n",
+            "}, 50, 8, 'helloworld')",
+        ],
+        'example': [
+            'times:: <select><option value ="10">10</option><option value ="20" selected="selected">20</option><option value="30">30</option><option value="40">40</option></select> ',
+            '<div class="button">start</div>  num:: <span>0</span>'
+        ],
+        'script': function (ele) {
+            var id = 0;
+            ele.find('.button').click(function () {
+                var times = ele.find('select').val();
+
+                if ($(this).text() == 'stop') {
+                    $(this).text('start');
+                    ppo.clearTimesout(id);
+                } else {
+                    $(this).text('stop');
+
+                    id = ppo.setTimesout(function (target) {
+                        ele.find('span').text(this.index);
+                        if (this.over) $(target).text('start');
+                    }, 150, parseInt(times), this);
+                }
+            });
+        }
+    });
+
+    // setInterval func fix times
+    addFragment({
+        'name': 'clearTimesout',
+        'api': 'ppo.clearTimesout(id)',
+        'introduce': 'clear ppo.setTimesout.',
+        'code': [
+            "ppo.clearTimesout(id)",
+        ]
+    });
+
     // lock touch in mobile phone 
     addFragment({
         'name': 'lockTouch',
@@ -601,7 +646,7 @@ function addFragment(data) {
     ].join('');
 
     if (data.example) {
-        fragment += '<b>example : </b><span style="color:#777;" class="' + id + '-example">' + data.example + '</span>';
+        fragment += '<b>example : </b><span style="color:#777;" class="' + id + '-example">' + (typeof data.example == 'string' ? data.example : data.example.join('')) + '</span>';
     }
 
     if (data.script) {
