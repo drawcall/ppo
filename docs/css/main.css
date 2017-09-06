@@ -102,13 +102,13 @@ code {
 pre {
 	font-size: 12px;
 	padding: 4px 0 3px 15px;
-	border-left: 5px solid #0b85ff;
+	border-left: 5px solid #0366d6;
 	margin: 0px 0 12px;
 	background: #eee;
 }
 
 .button{
-	background-color: #0b85ff;
+	background-color: #0366d6;
     border: none;
     color: white;
 	cursor: pointer;
@@ -227,7 +227,7 @@ div.warning {
 }
 
 .link{
-	color:#0b85ff;
+	color:#0366d6;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5) and (max-width: 800px),
