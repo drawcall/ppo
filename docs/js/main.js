@@ -117,11 +117,11 @@ $(function () {
     // logs
     addFragment({
         'name': 'logs',
-        'api': 'ppo.logs(\'+onlyid\',\'+10\', arg1, arg2, ...)',
+        'api': 'ppo.logs(\'+onlyid\',\'+times\', arg1, arg2, ...)',
         'introduce': 'In setInterval or requestAnimationFrame functions, a fixed number of log is performed only.',
         'code': [
             "setInterval(function(){ \n",
-            "   //Onlyid is +abc, print only 10 times \n",
+            "   //Onlyid is +abc, print only 15 times \n",
             "   ppo.logs('+abc', '+15', a, 2, 'hello', abc); \n",
             "}, 20);"
         ],
@@ -198,7 +198,8 @@ $(function () {
         'code': [
             "var id = ppo.setTimesout(function(word){ \n",
             "    console.log(word); \n",
-            "    console.log(this);  // log {index: 1 ,times: 8, over: false}\n",
+            "    console.log(this);  // log {index: 3 ,times: 8, over: false} \n\n",
+            "    if(this.over) ... \n",
             "}, 50, 8, 'helloworld')",
         ],
         'example': [
