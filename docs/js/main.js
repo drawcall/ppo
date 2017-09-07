@@ -93,7 +93,7 @@ $(function () {
             "console.log(ppo.ua('l')); \n",
             "console.log(ppo.ua('lower')); \n"
         ],
-        'example': ppo.ua()
+        'example': "<span style='font-size:12px'>" + ppo.ua() + "</span>"
     });
 
 
