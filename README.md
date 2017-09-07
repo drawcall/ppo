@@ -9,12 +9,17 @@ Most of the code comes from the [stackoverflow](https://stackoverflow.com/) site
 
 ppo little poor, gzip less than **3k**, so a library you can use it anytime, anywhere without worrying about anything.
 
+## Document
+
 #### View the document please visit [https://a-jie.github.io/ppo/](https://a-jie.github.io/ppo/)
 
 ## Installation
 
 #### Install using npm 
+[![anix](https://nodei.co/npm/ppo.png)](https://npmjs.org/package/ppo)
+
 ``` 
+npm install -g npm
 npm install ppo --save 
 ```
 
@@ -26,14 +31,23 @@ npm install ppo --save
 
 ## Usage
 
-#### Use es6 or Typescript
+#### in es6 or Typescript
 ```
 import ppo from 'ppo';
     
 ppo.log('hello world!');
 ```
 
-#### Use es5 or older
+#### in es5 or older
 ```
 ppo.removeConsole();
 ```
+
+## Why ppo?
+
+When you use react, vue, angular often need to write a lot of utils method. But lodash and underscore these libraries are not omnipotent. So you have to find a lot of tool library. Use ppo, you can solve the daily development of many small problems. Simple and compact!
+
+## Download
+
+- [ppo.js](https://raw.githubusercontent.com/a-jie/ppo/master/ppo.js)
+- [ppo.min.js](https://raw.githubusercontent.com/a-jie/ppo/master/ppo.min.js)
