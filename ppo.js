@@ -128,9 +128,8 @@
     */
     ppo.logs = function () {
         if (window.console && window.console.log) {
-            var args = arguments;
-            var onlyid = args[0] + '';
-            var times = args[1] + '';
+            var onlyid = arguments[0] + '';
+            var times = arguments[1] + '';
             var logsCache = ppo._cache.logs;
 
             if (times.indexOf('+') == 0) {
@@ -139,11 +138,11 @@
                 if (!logsCache[onlyid].once) logsCache[onlyid].once = 1;
 
                 if (logsCache[onlyid].once <= times) {
-                    console.log.apply(console, Array.prototype.slice.call(args, 2));
+                    console.log.apply(console, ppo.args(arguments, 2));
                     logsCache[onlyid].once++;
                 }
             } else {
-                console.log(args);
+                console.log.apply(console, arguments);
             }
         }
     }
@@ -199,7 +198,7 @@
         var func = arguments[0];
         var delay = arguments[1] === undefined ? 0 : parseFloat(arguments[1]);
         var times = arguments[2] === undefined ? 1 : parseInt(arguments[2]);
-        var args = arguments.length > 3 ? Array.prototype.slice.call(arguments, 3) : null;
+        var args = arguments.length > 3 ? ppo.args(arguments, 3) : null;
         var target = { index: 0, times: times, over: false };
 
         var id = setInterval(function () {
@@ -218,6 +217,15 @@
     ppo.clearTimesout = function (id) {
         clearInterval(id);
     }
+
+    /**
+    * construct
+    * https://stackoverflow.com/questions/1606797/use-of-apply-with-new-operator-is-this-possible
+    */
+    ppo.construct = function () {
+        var classs = arguments[0];
+        return new (Function.prototype.bind.apply(classs, arguments));
+    };
 
 
     /************************************************************************
@@ -538,6 +546,13 @@
         } else {
             return res;
         }
+    }
+
+    /**
+    * arguments to array
+    */
+    ppo.args = function ($arguments, first) {
+        return Array.prototype.slice.call($arguments, first || 0);
     }
 
     /**

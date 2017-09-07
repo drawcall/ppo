@@ -250,6 +250,28 @@ $(function () {
         ]
     });
 
+    addFragment({
+        'name': 'construct',
+        'api': 'ppo.construct(class, ...args)',
+        'introduce': 'Instantiate a class object and can pass parameters, only support es5 and above.',
+        'code': [
+            "var classs = [Dog, Cat, Goose, Elephant]; \n",
+            "var randomClass = ppo.randomFromArray(classs); \n",
+            "var animal = ppo.construct(randomClass, 'animal', 300); \n"
+        ],
+        script: function () {
+            function Dog(a, b) { console.log(a, b) };
+            function Cat(a, b) { console.log(a, b) };
+            function Goose(a, b) { console.log(a, b) };
+
+            var classs = [Dog, Cat, Goose];
+            var randomClass = ppo.randomFromArray(classs);
+            var animal = ppo.construct(randomClass, 'animal', 300);
+            //console.log(animal); 
+        }
+    });
+
+
     // lock touch in mobile phone 
     addFragment({
         'name': 'lockTouch',
@@ -626,6 +648,17 @@ $(function () {
             "ppo.trash['cache'] = {}; \n\n",
             "ppo.trash.clear();  // All stored data will be cleared \n",
             "ppo.trash.log();    // All stored data will be printed \n"
+        ]
+    });
+
+    // args 
+    addFragment({
+        'name': 'args',
+        'api': 'ppo.args(arguments, first?)',
+        'introduce': 'Converts the arguments object to an array object and slice it. first defalult is 0.',
+        'code': [
+            "var args = ppo.args(arguments); \n",
+            "var args = ppo.args(arguments, 3); \n"
         ]
     });
 
