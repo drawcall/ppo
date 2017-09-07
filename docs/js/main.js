@@ -123,7 +123,6 @@ $(function () {
                     var isMobile = ppo.isMobile();
                     ppo.log('log :: isMobile-' + isMobile + ' random-' + random, style);
                 }, 1000 / 3);
-                $('body').scrollTop(0);
             });
         }
     });
@@ -257,18 +256,9 @@ $(function () {
         'code': [
             "var classs = [Dog, Cat, Goose, Elephant]; \n",
             "var randomClass = ppo.randomFromArray(classs); \n",
-            "var animal = ppo.construct(randomClass, 'animal', 300); \n"
-        ],
-        script: function () {
-            function Dog(a, b) { console.log(a, b) };
-            function Cat(a, b) { console.log(a, b) };
-            function Goose(a, b) { console.log(a, b) };
-
-            var classs = [Dog, Cat, Goose];
-            var randomClass = ppo.randomFromArray(classs);
-            var animal = ppo.construct(randomClass, 'animal', 300);
-            //console.log(animal); 
-        }
+            "var animal = ppo.construct(randomClass, 'animal', 300); \n",
+            "console.log(animal.name); \n"
+        ]
     });
 
 

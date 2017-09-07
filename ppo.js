@@ -111,7 +111,7 @@
         if (ele === null) {
             ele = document.createElement('div');
             ele.setAttribute('id', '_ppo_log');
-            ele.setAttribute('style', 'position:absolute;left:0;top:0;z-index:9999;padding:4px;');
+            ele.setAttribute('style', 'position:fixed;left:0;top:0;z-index:9999;padding:4px;');
             document.body.appendChild(ele);
         }
 
