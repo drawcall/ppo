@@ -83,6 +83,20 @@ $(function () {
     });
 
 
+    // get navigator.userAgent
+    addFragment({
+        'name': 'ua',
+        'api': 'ppo.ua(lower?)',
+        'introduce': 'return navigator.userAgent.',
+        'code': [
+            "console.log(ppo.ua()); \n",
+            "console.log(ppo.ua('l')); \n",
+            "console.log(ppo.ua('lower')); \n"
+        ],
+        'example': ppo.ua()
+    });
+
+
     //------------------ LOGS -----------------
     addChapter({
         'name': 'LOGS'
@@ -595,8 +609,8 @@ $(function () {
         'api': 'ppo.judge(v, vals, strict?)',
         'introduce': 'A number of conditions to determine, like x == a || x == b || x == c ..., strict is ===.',
         'code': [
-            "if(ppo.judge(navigator.userAgent, ['iPad','iPhone','iPod'], true){  \n",
-            "   console.log('is ios device!');  \n",
+            "if(ppo.judge(fileSuffix, ['.js','.jsx','.css','.less'], 'strict'){  \n",
+            "   console.log('This file is legal!');  \n",
             "}"
         ]
     });

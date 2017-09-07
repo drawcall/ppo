@@ -25,11 +25,11 @@
     * From https://stackoverflow.com/questions/9038625/detect-if-device-is-ios
     */
     ppo.isIOS = ppo.isIos = function () {
-        return /iPad|iPhone|iPod/.test(navigator.userAgent);
+        return /iPad|iPhone|iPod/.test(ppo.ua());
     }
 
     ppo.isIPad = function () {
-        return /iPad/.test(navigator.userAgent);
+        return /iPad/.test(ppo.ua());
     }
 
     /**
@@ -37,8 +37,7 @@
     * From https://stackoverflow.com/questions/6031412/detect-android-phone-via-javascript-jquery
     */
     ppo.isAndroid = function () {
-        var ua = navigator.userAgent.toLowerCase();
-        return ua.indexOf("android") > -1;
+        return ppo.ua('l').indexOf("android") > -1;
     }
 
     /**
@@ -46,7 +45,7 @@
     * From https://stackoverflow.com/questions/3514784/what-is-the-best-way-to-detect-a-mobile-device-in-jquery
     */
     ppo.isMobile = function () {
-        return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase());
+        return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ppo.ua('l'));
     }
 
     ppo.isPC = function () {
@@ -54,7 +53,7 @@
     }
 
     ppo.isWeixin = function () {
-        return /MicroMessenger/i.test(navigator.userAgent.toLowerCase());
+        return /MicroMessenger/i.test(ppo.ua('l'));
     }
 
     /**
@@ -74,7 +73,7 @@
     * Edge 13 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586';
     */
     ppo.ieVersion = ppo.ieVer = function () {
-        var ua = window.navigator.userAgent;
+        var ua = ppo.ua();
         var msie = ua.indexOf('MSIE ');
         if (msie > 0) {
             return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
@@ -92,6 +91,13 @@
         }
 
         return -1;
+    }
+
+    /**
+    * navigator.userAgent
+    */
+    ppo.ua = function (lower) {
+        return lower ? window.navigator.userAgent.toLowerCase() : window.navigator.userAgent;
     }
 
     /************************************************************************
@@ -581,13 +587,13 @@
         script.setAttribute("src", src);
         document.getElementsByTagName("head")[0].appendChild(script);
 
-        if (/msie/.test(window.navigator.userAgent.toLowerCase())) {
+        if (/msie/.test(ppo.ua('l'))) {
             script.onreadystatechange = function () {
                 if (this.readyState == "loaded" || this.readyState == "complete") {
                     callback();
                 }
             };
-        } else if (/gecko/.test(window.navigator.userAgent.toLowerCase())) {
+        } else if (/gecko/.test(ppo.ua('l'))) {
             script.onload = function () {
                 callback();
             };
