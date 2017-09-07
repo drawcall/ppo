@@ -367,10 +367,12 @@ $(function () {
         'example': '<div class="button">get random</div> <span>[1-1000](int) :: </span>',
         'script': function (ele) {
             var preText = ele.find('.button').next().text();
-            ele.find('.button').click(function () {
-                var text = preText + ppo.randomA2B(1, 1000, true);
-                $(this).next().text(text);
-            });
+            ele.find('.button')
+                .click(function () {
+                    var text = preText + ppo.randomA2B(1, 1000, true);
+                    $(this).next().text(text);
+                })
+                .trigger('click');
         }
     });
 
@@ -385,10 +387,12 @@ $(function () {
         'example': '<div class="button">get random</div> <span>[1, 3, 9, 20, \'a\', \'b\'] :: </span>',
         'script': function (ele) {
             var preText = ele.find('.button').next().text();
-            ele.find('.button').click(function () {
-                var text = preText + ppo.randomFromArray([1, 3, 9, 20, 'a', 'b']);
-                $(this).next().text(text);
-            });
+            ele.find('.button')
+                .click(function () {
+                    var text = preText + ppo.randomFromArray([1, 3, 9, 20, 'a', 'b']);
+                    $(this).next().text(text);
+                })
+                .trigger('click');;
         }
     });
 
@@ -403,12 +407,14 @@ $(function () {
         'example': '<div class="button">get random</div> <span>color :: </span>',
         'script': function (ele) {
             var preText = ele.find('.button').next().text();
-            ele.find('.button').click(function () {
-                var color = ppo.randomColor();
-                var text = preText + color;
-                $(this).next().text(text);
-                $(this).css('background', color);
-            });
+            ele.find('.button')
+                .click(function () {
+                    var color = ppo.randomColor();
+                    var text = preText + color;
+                    $(this).next().text(text);
+                    $(this).css('background', color);
+                })
+                .trigger('click');;
         }
     });
 
@@ -424,10 +430,12 @@ $(function () {
         'script': function (ele) {
             var preText = ele.find('.button').next().text();
 
-            ele.find('.button').click(function () {
-                var text = preText + ppo.randomKey(12);
-                $(this).next().text(text);
-            });
+            ele.find('.button')
+                .click(function () {
+                    var text = preText + ppo.randomKey(12);
+                    $(this).next().text(text);
+                })
+                .trigger('click');;
         }
     });
 
@@ -437,15 +445,17 @@ $(function () {
         'api': 'ppo.floor(a, b?)',
         'introduce': 'Keep a few decimal places. Default is 0',
         'code': [
-            "ppo.floor(Math.random(), 5) \n"
+            "ppo.floor(Math.random()*100, 5) \n"
         ],
         'example': '<div class="button">get result</div> <span>result :: </span>',
         'script': function (ele) {
             var preText = ele.find('.button').next().text();
-            ele.find('.button').click(function () {
-                var text = preText + ppo.floor(Math.random(), 5);
-                $(this).next().text(text);
-            });
+            ele.find('.button')
+                .click(function () {
+                    var text = preText + ppo.floor(Math.random() * 100, 5);
+                    $(this).next().text(text);
+                })
+                .trigger('click');;
         }
     });
 
@@ -535,9 +545,13 @@ $(function () {
         'code': [
             "ppo.uuid() \n"
         ],
-        'example': 'uuid :: <span class="uuid"> </span>',
-        'script': function () {
-            $('.uuid').text(ppo.uuid());
+        'example': '<div class="button">generate uuid</div> uuid :: <span class="uuid"> </span>',
+        'script': function (ele) {
+            ele.find('.button')
+                .click(function () {
+                    $('.uuid').text(ppo.uuid());
+                })
+                .trigger('click');
         }
     });
 
@@ -549,16 +563,18 @@ $(function () {
         'code': [
             "ppo.hash('sdf%$sdfMnjjskds23'); \n"
         ],
-        'example': '<input placeholder="please input!"></input><div class="button">get hash</div> <span>hash :: </span>',
+        'example': '<input placeholder="please input!"></input><div class="button">get hash code</div> <span>hash :: </span>',
         'script': function (ele) {
             var preText = ele.find('.button').next().text();
             ele.find('input').val('sdf%$sdfMnjjskds23');
 
-            ele.find('.button').click(function () {
-                var val = ele.find('input').val();
-                var hash = preText + ppo.hash(val);
-                $(this).next().text(hash);
-            });
+            ele.find('.button')
+                .click(function () {
+                    var val = ele.find('input').val();
+                    var hash = preText + ppo.hash(val);
+                    $(this).next().text(hash);
+                })
+                .trigger('click');
         }
     });
 
