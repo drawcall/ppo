@@ -9,7 +9,7 @@ Most of the code comes from the [stackoverflow](https://stackoverflow.com/) site
 
 ppo little poor, gzip less than **3k**, so a library you can use it anytime, anywhere without worrying about anything.
 
-## Document
+## Documentation
 
 #### View the document please visit [https://a-jie.github.io/ppo/](https://a-jie.github.io/ppo/)
 
@@ -19,8 +19,9 @@ ppo little poor, gzip less than **3k**, so a library you can use it anytime, any
 [![anix](https://nodei.co/npm/ppo.png)](https://npmjs.org/package/ppo)
 
 ``` 
-npm install -g npm
-npm install ppo --save 
+npm install ppo --save
+... 
+import ppo from 'ppo';
 ```
 
 #### Include in html
@@ -31,17 +32,19 @@ npm install ppo --save
 
 ## Usage
 
-#### in es6 or Typescript
+
 ```
-import ppo from 'ppo';
-    
+var username = ppo.getCookie('username');
+
 ppo.log('hello world!');
+
+var id = ppo.setTimesout(function(word){ 
+    console.log(word); 
+    console.log(this);  // log {index: 3 ,times: 8, over: false}  
+}, 1000/20, 8, 'helloworld')
 ```
 
-#### in es5 or older
-```
-ppo.removeConsole();
-```
+
 
 ## Why ppo?
 
