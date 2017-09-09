@@ -530,9 +530,9 @@ $(function () {
         'introduce': 'This method is used to handle the data returned by ajax, which is not determined to be a string or json',
         'code': [
             "$.ajax({ url:'xx', success: res => { \n",
-            "   // res = \"{ code: 0 ,msg: 'xxx' , data: ... }\" \n",
-            "   var data = ppo.toJson(res); \n",
-            "   ... \n",
+            "   // res = \"{ code: 0 ,msg: 'xxx' , data: ... }\"; \n",
+            "   res = ppo.toJson(res); \n",
+            "   if(res.code==0){ ... }; \n",
             "   } \n",
             "});",
         ]
