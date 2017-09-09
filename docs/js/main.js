@@ -505,7 +505,7 @@ $(function () {
     addFragment({
         'name': 'loadjs',
         'api': 'ppo.loadjs(urls, idOrCallback?, callback?)',
-        'introduce': 'Asynchronous loading javascript script, and cache loading',
+        'introduce': 'Asynchronous loading javascript script file and only load once.',
         'code': [
             "ppo.loadjs('http://x.com/a.js'); \n",
             "ppo.loadjs('http://x.com/a.js', callback); \n",
