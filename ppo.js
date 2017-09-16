@@ -227,6 +227,13 @@
         return new (Function.prototype.bind.apply(classs, arguments));
     };
 
+    /**
+    * Gets all the formal parameter names of a function
+    * https://www.zhihu.com/question/28912825
+    */
+    ppo.paramsName = function (fn) {
+        return /\(\s*([\s\S]*?)\s*\)/.exec(fn.toString())[1].split(/\s*,\s*/);
+    }
 
     /************************************************************************
     * Date

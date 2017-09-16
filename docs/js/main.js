@@ -261,6 +261,21 @@ $(function () {
         ]
     });
 
+    addFragment({
+        'name': 'paramsName',
+        'api': 'ppo.paramsName(func)',
+        'introduce': 'Gets all the formal parameter names of a function.',
+        'code': [
+            "function abc($use, $next, $name, $key){ ... }; \n",
+            "let paramsName = ppo.paramsName(abc); \n",
+            "// [\"$use\", \"$next\", \"$name\", \"$key\"]; \n"
+        ],
+        'script': function (ele) {
+            function abc($use, $next, $name, $key) { };
+            //console.log(ppo.paramsName(abc));
+        }
+    });
+
 
     // lock touch in mobile phone 
     addFragment({
