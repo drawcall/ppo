@@ -14,15 +14,12 @@
     "url": "git://github.com/a-jie/ppo.git"
   },
   "main": "ppo.min.js",
-  "version": "1.1.6",
+  "version": "1.1.8",
   "devDependencies": {},
   "scripts": {
     "build": "uglifyjs ppo.js -o ppo.min.js -c -m --source-map"
   },
-  "licenses": [{
-    "type": "Apache-2.0",
-    "url": "http://www.apache.org/licenses/LICENSE-2.0"
-  }],
+  "license": "MIT",
   "files": [
     "ppo.js",
     "ppo.min.js",
