@@ -124,25 +124,20 @@
     }
 
     /**
-    * ppo.logs('+onlyid', '+10', 1, 2);
+    * ppo.logs('onlyid&10', 1, 2);
     */
     ppo.logs = function () {
         if (window.console && window.console.log) {
             var onlyid = arguments[0] + '';
-            var times = arguments[1] + '';
+            var times = parseInt(onlyid.split('&')[1]) || 10;
             var logsCache = ppo._cache.logs;
 
-            if (times.indexOf('+') == 0) {
-                times = parseInt(times);
-                if (!logsCache[onlyid]) logsCache[onlyid] = {};
-                if (!logsCache[onlyid].once) logsCache[onlyid].once = 1;
+            if (!logsCache[onlyid]) logsCache[onlyid] = {};
+            if (!logsCache[onlyid].once) logsCache[onlyid].once = 1;
 
-                if (logsCache[onlyid].once <= times) {
-                    console.log.apply(console, ppo.args(arguments, 2));
-                    logsCache[onlyid].once++;
-                }
-            } else {
-                console.log.apply(console, arguments);
+            if (logsCache[onlyid].once <= times) {
+                console.log.apply(console, ppo.args(arguments, 1));
+                logsCache[onlyid].once++;
             }
         }
     }

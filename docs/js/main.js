@@ -130,25 +130,25 @@ $(function () {
     // logs
     addFragment({
         'name': 'logs',
-        'api': 'ppo.logs(\'+onlyid\',\'+times\', arg1, arg2, ...)',
+        'api': 'ppo.logs(onlyid&time, arg1, arg2, ...)',
         'introduce': 'In setInterval or requestAnimationFrame functions, a fixed number of log is performed only.',
         'code': [
             "setInterval(function(){ \n",
-            "   //Onlyid is +abc, print only 15 times \n",
-            "   ppo.logs('+abc', '+15', a, 2, 'hello', abc); \n",
+            "   //Onlyid is myid, print only 15 times \n",
+            "   ppo.logs(myid + '&15', r, 'show id: '+myid, ' index:', ++index); \n",
             "}, 20);"
         ],
         'example': '<div class="button">start log</div> Please press f12 to open the console panel',
         'script': function (ele) {
             var id = 0;
-            var onlyid;
+            var myid;
             ele.find('.button').click(function () {
                 var index = 0;
-                onlyid = ppo.randomA2B(1, 9999, true);
+                myid = ppo.randomA2B(1, 9999, true);
                 clearInterval(id);
 
                 id = setInterval(function () {
-                    ppo.logs('+' + onlyid, '+15', 2, 'hello', 'onlyid::' + onlyid, ++index);
+                    ppo.logs(myid + '&15', ppo.floor(Math.random(), 5), 'show id: ' + myid, ' index:', ++index);
                 }, 20);
             });
 
