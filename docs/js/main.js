@@ -49,17 +49,6 @@ $(function () {
         'example': 'detecting is Mobile - ' + ppo.isMobile()
     });
 
-    // is isPC
-    addFragment({
-        'name': 'isPC',
-        'api': 'ppo.isPC()',
-        'introduce': 'Check whether the current device is an PC device.',
-        'code': [
-            "if(ppo.isPC()) { console.log('this is pc'); }"
-        ],
-        'example': 'detecting is PC - ' + ppo.isPC()
-    });
-
     // is isIE
     addFragment({
         'name': 'isIE',
