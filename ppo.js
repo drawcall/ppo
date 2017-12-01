@@ -90,7 +90,7 @@
             return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
         }
 
-        return -1;
+        return "";
     }
 
     /**
