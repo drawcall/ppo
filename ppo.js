@@ -542,7 +542,11 @@
         if (!res) return null;
 
         if (typeof res == 'string') {
-            return JSON.parse ? JSON.parse(res) : eval('(' + res + ')');
+            try {
+                return JSON.parse(res);
+            } catch (e) {
+                return eval('(' + res + ')');
+            }
         } else if (this.isTypeof(res.json, 'function')) {
             return res.json();
         } else {
