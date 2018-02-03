@@ -1,102 +1,5 @@
 $(function () {
 
-    //------------------ Url Params -----------------
-    addChapter({
-        'name': 'Detecting'
-    });
-
-    // is ios
-    addFragment({
-        'name': 'isIOS',
-        'api': 'ppo.isIOS() or ppo.isIos()',
-        'introduce': 'Check whether the mobile device is an IOS device.',
-        'code': [
-            "if(ppo.isIOS()) { console.log('this is ios'); }"
-        ],
-        'example': 'detecting is ios - ' + ppo.isIOS()
-    });
-
-    // is Android
-    addFragment({
-        'name': 'isAndroid',
-        'api': 'ppo.isAndroid()',
-        'introduce': 'Check whether the mobile device is an Android device.',
-        'code': [
-            "if(ppo.isAndroid()) { console.log('this is android'); }"
-        ],
-        'example': 'detecting is android - ' + ppo.isAndroid()
-    });
-
-    // is ipad
-    addFragment({
-        'name': 'isIPad',
-        'api': 'ppo.isIPad()',
-        'introduce': 'Check whether the mobile device is an IPad.',
-        'code': [
-            "if(ppo.isIPad()) { console.log('this is ipad'); }"
-        ],
-        'example': 'detecting is ipad - ' + ppo.isIPad()
-    });
-
-    // is isMobile
-    addFragment({
-        'name': 'isMobile',
-        'api': 'ppo.isMobile()',
-        'introduce': 'Check if the current device is a mobile device.',
-        'code': [
-            "if(ppo.isMobile()) { document.querySelector('.title').style.color = '#fff'; }"
-        ],
-        'example': 'detecting is Mobile - ' + ppo.isMobile()
-    });
-
-    // is isPC
-    addFragment({
-        'name': 'isPC',
-        'api': 'ppo.isPC()',
-        'introduce': 'Check whether the current device is an PC device.',
-        'code': [
-            "if(ppo.isPC()) { console.log('this is pc'); }"
-        ],
-        'example': 'detecting is PC - ' + ppo.isPC()
-    });
-
-    // is isIE
-    addFragment({
-        'name': 'isIE',
-        'api': 'ppo.isIE()',
-        'introduce': 'Detect the current browser is Microsoft IE.',
-        'code': [
-            "ppo.isIE()"
-        ],
-        'example': 'detecting is IE browser - ' + ppo.isIE()
-    });
-
-    // get ie Version
-    addFragment({
-        'name': 'ieVersion',
-        'api': 'ppo.ieVersion() or ppo.ieVer()',
-        'introduce': 'Check the IE browser version.',
-        'code': [
-            "document.getElementById('info').innerText = ppo.ieVersion();"
-        ],
-        'example': 'IE browser version - ' + ppo.ieVersion()
-    });
-
-
-    // get navigator.userAgent
-    addFragment({
-        'name': 'ua',
-        'api': 'ppo.ua(lower?)',
-        'introduce': 'return navigator.userAgent.',
-        'code': [
-            "console.log(ppo.ua()); \n",
-            "console.log(ppo.ua('l')); \n",
-            "console.log(ppo.ua('lower')); \n"
-        ],
-        'example': "<span style='font-size:12px'>" + ppo.ua() + "</span>"
-    });
-
-
     //------------------ LOGS -----------------
     addChapter({
         'name': 'LOGS'
@@ -285,6 +188,91 @@ $(function () {
         'code': [
             "ppo.lockTouch()",
         ]
+    });
+
+    //------------------ Url Params -----------------
+    addChapter({
+        'name': 'Detecting'
+    });
+
+    // is ios
+    addFragment({
+        'name': 'isIOS',
+        'api': 'ppo.isIOS() or ppo.isIos()',
+        'introduce': 'Check whether the mobile device is an IOS device.',
+        'code': [
+            "if(ppo.isIOS()) { console.log('this is ios'); }"
+        ],
+        'example': 'detecting is ios - ' + ppo.isIOS()
+    });
+
+    // is Android
+    addFragment({
+        'name': 'isAndroid',
+        'api': 'ppo.isAndroid()',
+        'introduce': 'Check whether the mobile device is an Android device.',
+        'code': [
+            "if(ppo.isAndroid()) { console.log('this is android'); }"
+        ],
+        'example': 'detecting is android - ' + ppo.isAndroid()
+    });
+
+    // is ipad
+    addFragment({
+        'name': 'isIPad',
+        'api': 'ppo.isIPad()',
+        'introduce': 'Check whether the mobile device is an IPad.',
+        'code': [
+            "if(ppo.isIPad()) { console.log('this is ipad'); }"
+        ],
+        'example': 'detecting is ipad - ' + ppo.isIPad()
+    });
+
+    // is isMobile
+    addFragment({
+        'name': 'isMobile',
+        'api': 'ppo.isMobile()',
+        'introduce': 'Check if the current device is a mobile device.',
+        'code': [
+            "if(ppo.isMobile()) { document.querySelector('.title').style.color = '#fff'; }"
+        ],
+        'example': 'detecting is Mobile - ' + ppo.isMobile()
+    });
+
+    // is isIE
+    addFragment({
+        'name': 'isIE',
+        'api': 'ppo.isIE()',
+        'introduce': 'Detect the current browser is Microsoft IE.',
+        'code': [
+            "ppo.isIE()"
+        ],
+        'example': 'detecting is IE browser - ' + ppo.isIE()
+    });
+
+    // get ie Version
+    addFragment({
+        'name': 'ieVersion',
+        'api': 'ppo.ieVersion() or ppo.ieVer()',
+        'introduce': 'Check the IE browser version.',
+        'code': [
+            "document.getElementById('info').innerText = ppo.ieVersion();"
+        ],
+        'example': 'IE browser version - ' + ppo.ieVersion()
+    });
+
+
+    // get navigator.userAgent
+    addFragment({
+        'name': 'ua',
+        'api': 'ppo.ua(lower?)',
+        'introduce': 'return navigator.userAgent.',
+        'code': [
+            "console.log(ppo.ua()); \n",
+            "console.log(ppo.ua('l')); \n",
+            "console.log(ppo.ua('lower')); \n"
+        ],
+        'example': "<span style='font-size:12px'>" + ppo.ua() + "</span>"
     });
 
 

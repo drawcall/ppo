@@ -90,7 +90,7 @@
             return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
         }
 
-        return -1;
+        return "";
     }
 
     /**
@@ -333,6 +333,7 @@
     * change by a-jie
     */
     ppo.setCookie = function (name, value, option) {
+        var longTime = 10;
         var path = "; path=/";
         var val = option.raw && option.raw ? value : encodeURIComponent(value);
         var cookie = encodeURIComponent(name) + "=" + val;
