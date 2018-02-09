@@ -15,13 +15,14 @@
   },
   "main": "ppo.min.js",
   "types": "ppo.d.ts",
-  "version": "1.2.7",
+  "version": "1.3.0",
   "devDependencies": {},
   "scripts": {
     "build": "uglifyjs ppo.js -o ppo.min.js -c -m --source-map"
   },
   "license": "MIT",
   "files": [
+    "ppo.d.ts",
     "ppo.js",
     "ppo.min.js",
     "ppo.min.map"
