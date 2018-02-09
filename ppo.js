@@ -335,9 +335,9 @@
     ppo.setCookie = function (name, value, option) {
         var longTime = 10;
         var path = "; path=/";
-        var val = option.raw && option.raw ? value : encodeURIComponent(value);
+        var val = option && option.raw ? value : encodeURIComponent(value);
         var cookie = encodeURIComponent(name) + "=" + val;
-
+        
         if (option) {
             if (option.days) {
                 var date = new Date();
