@@ -541,6 +541,19 @@ $(function () {
         ]
     });
 
+    // toArray 
+    addFragment({
+        'name': 'toArray',
+        'api': 'ppo.toArray(obj)',
+        'introduce': 'This method is used to convert an interval string, a single element to an array',
+        'code': [
+            "ppo.toArray('1000,1001,1002,1003');  ->  ['1000','1001','1002','1003'] \n",
+            "ppo.toArray('1000|1001|1002', '|');  ->  ['1000','1001','1002'] \n",
+            "ppo.toArray(125);                    ->  [125] \n",
+            "ppo.toArray(['a','b','c']);          ->  ['a','b','c'] \n"
+        ]
+    });
+
     //------------------ Date -----------------
     addChapter({
         'name': 'Date'
@@ -653,6 +666,20 @@ $(function () {
         'code': [
             "var args = ppo.args(arguments); \n",
             "var args = ppo.args(arguments, 3); \n"
+        ]
+    });
+
+    // deleteLastComma 
+    addFragment({
+        'name': 'deleteLastComma',
+        'api': 'ppo.deleteLastComma(string) or ppo.delLastComma(string)',
+        'introduce': 'delete string last comma.',
+        'code': [
+            "var str = '' \n",
+            "for(var i=0; i&lt;arr\.length; i++) \n",
+            "  str += arr[i] + ',' \n",
+            " \n",
+            "str = ppo.deleteLastComma(str); \n"
         ]
     });
 

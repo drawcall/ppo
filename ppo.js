@@ -337,7 +337,7 @@
         var path = "; path=/";
         var val = option && option.raw ? value : encodeURIComponent(value);
         var cookie = encodeURIComponent(name) + "=" + val;
-        
+
         if (option) {
             if (option.days) {
                 var date = new Date();
@@ -556,10 +556,34 @@
     }
 
     /**
+    * to array
+    */
+    ppo.toArray = function (obj, dot) {
+        if (!obj) return null;
+
+        if (ppo.isTypeof(obj, 'array')) {
+            return obj;
+        } else if (ppo.isTypeof(obj, 'string') && obj.indexOf(",") > 0) {
+            return obj.split(',');
+        } else {
+            if (dot && ppo.isTypeof(obj, 'string'))
+                return obj.split(dot);
+            else
+                return [obj];
+        }
+    }
+
+    /**
     * arguments to array
     */
     ppo.args = function ($arguments, first) {
         return Array.prototype.slice.call($arguments, first || 0);
+    }
+
+    ppo.delLastComma = ppo.deleteLastComma = function (str) {
+        str += '';
+        str = (str.slice(str.length - 1) === ',') ? str.slice(0, -1) : str;
+        return str;
     }
 
     /**
@@ -624,6 +648,6 @@
         }
     }
 
-    
+
     return ppo;
 });
