@@ -254,7 +254,7 @@ $(function () {
     addFragment({
         'name': 'ieVersion',
         'api': 'ppo.ieVersion() or ppo.ieVer()',
-        'introduce': 'Check the IE browser version.',
+        'introduce': 'Check the IE browser version. Returns the major version number, non-ie is -1',
         'code': [
             "document.getElementById('info').innerText = ppo.ieVersion();"
         ],
