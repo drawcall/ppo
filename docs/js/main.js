@@ -266,7 +266,7 @@ $(function () {
     addFragment({
         'name': 'ua',
         'api': 'ppo.ua(lower?)',
-        'introduce': 'return navigator.userAgent.',
+        'introduce': 'return navigator.userAgent. lower is to convert the result to lowercase (not required)',
         'code': [
             "console.log(ppo.ua()); \n",
             "console.log(ppo.ua('l')); \n",
@@ -563,7 +563,7 @@ $(function () {
     addFragment({
         'name': 'getDate',
         'api': 'ppo.getDate(d1?, d2?)',
-        'introduce': 'Return to the current time, year - month - day - seconds - minutes.',
+        'introduce': 'Return to the current time, year - month - day - seconds - minutes. d1, d2 are interval characters.',
         'code': [
             "ppo.getDate(); \n",
             "ppo.getDate('-', '-'); \n"
