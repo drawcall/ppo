@@ -54,3 +54,6 @@ When you use react, vue, angular often need to write a lot of utils method. But 
 
 - [ppo.js](https://raw.githubusercontent.com/a-jie/ppo/master/ppo.js)
 - [ppo.min.js](https://raw.githubusercontent.com/a-jie/ppo/master/ppo.min.js)
+
+## License
+ppo is released under the MIT License. http://www.opensource.org/licenses/mit-license
