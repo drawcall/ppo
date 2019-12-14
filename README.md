@@ -1,4 +1,4 @@
-<div align=center><img src="https://a-jie.github.io/ppo/docs/imgs/logo2.png"/></div>
+![logo](https://a-jie.github.io/ppo/docs/imgs/logo2.png)
 
 ## Overview
 
