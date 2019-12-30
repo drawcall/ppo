@@ -1,8 +1,8 @@
 /*
  * PPO
  * +++++++++ a utility-belt library for JavaScript +++++++++
- * (c) 2011-2017 a-jie
- * https://github.com/a-jie
+ * (c) 2011-2017 drawcall
+ * https://github.com/drawcall
  */
 
 (function (global, factory) {
@@ -330,7 +330,7 @@
     /**
     * setCookie / getCookie / deleteCookie
     * From https://stackoverflow.com/questions/1458724/how-do-i-set-unset-cookie-with-jquery/1458728#1458728
-    * change by a-jie
+    * change by drawcall
     */
     ppo.setCookie = function (name, value, option) {
         var longTime = 10;

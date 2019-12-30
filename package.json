@@ -1,21 +1,21 @@
 {
   "name": "ppo",
+  "version": "1.3.7",
   "description": "JavaScript's functional programming helper library.",
-  "homepage": "https://a-jie.github.io/ppo/",
+  "homepage": "https://drawcall.github.io/ppo/",
   "keywords": [
     "util",
     "functional",
     "lodash",
     "browser"
   ],
-  "author": "a-jie <ajiemath@gmail.com>",
+  "author": "drawcall <ajiemath@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/a-jie/ppo.git"
+    "url": "git://github.com/drawcall/ppo.git"
   },
   "main": "ppo.min.js",
   "types": "ppo.d.ts",
-  "version": "1.3.6",
   "devDependencies": {},
   "scripts": {
     "build": "uglifyjs ppo.js -o ppo.min.js -c -m --source-map"
