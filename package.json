@@ -1,8 +1,7 @@
 {
   "name": "ppo",
-  "version": "1.3.8",
+  "version": "1.5.1",
   "description": "JavaScript's functional programming helper library.",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "homepage": "https://drawcall.github.io/ppo/",
   "keywords": [
     "util",
@@ -10,7 +9,7 @@
     "lodash",
     "browser"
   ],
-  "author": "drawcall <ajiemath@gmail.com>",
+  "author": "drawcall <colorbuffer@gmail.com>",
   "repository": {
     "type": "git",
     "url": "git://github.com/drawcall/ppo.git"

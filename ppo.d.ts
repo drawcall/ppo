@@ -6,9 +6,21 @@ declare namespace ppo {
     const prototype: {
     };
 
-    function args(e?: any, t?: any): any;
+    interface Trash {  
+        clear: () => void;  
+        log: () => void;  
+        [key: string]: any; 
+    }
+    
+    var trash: Trash;  
+
+    function args(e?: any, t?: number): any;
 
     function clearTimesout(e?: any): void;
+
+    function delLastComma(t?: string): string;
+
+    function deleteLastComma(t?: string): string;
 
     function construct(...args: any[]): any;
 
@@ -18,93 +30,95 @@ declare namespace ppo {
 
     function delUrlParam(e: any, t?: any): any;
 
-    function deleteCookie(e: any): void;
+    function deleteCookie(e: string): void;
 
-    function deleteUrlParam(e: any, t?: any): any;
+    function deleteUrlParam(e: any, t?: string): string;
 
-    function fill0(e?: any): any;
+    function fill0(e?: number): number;
 
-    function floor(e?: any, t?: any): any;
+    function floor(e?: number, t?: number): number;
 
-    function getCookie(e?: any): any;
+    function getCookie(e?: any): null | string;
 
-    function getDate(e?: any, t?: any): any;
+    function getDate(e?: string, t?: string): string;
 
-    function getUrlParam(e?: any, t?: any): any;
+    function getUrlParam(e?: string, t?: string): string;
 
-    function hash(e?: any): any;
+    function hash(e?: string): any;
 
     function ieVer(): any;
 
-    function ieVersion(): any;
+    function ieVersion(): number;
 
-    function isAndroid(): any;
+    function isAndroid(): boolean;
 
-    function isIE(): any;
+    function isIE(): boolean;
 
-    function isIOS(): any;
+    function isIOS(): boolean;
 
-    function isIPad(): any;
+    function isIPad(): boolean;
 
-    function isIos(): any;
+    function isIos(): boolean;
 
-    function isMobile(): any;
+    function isMobile(): boolean;
 
-    function isPC(): any;
+    function isPC(): boolean;
 
-    function isTypeof(e?: any, t?: any): any;
+    function isTypeof(e?: any, t?: string): boolean;
 
-    function isWeixin(): any;
+    function isWeixin(): boolean;
 
-    function judge(e: any, t?: any, o?: any): any;
+    function judge(e: any, t?: any, o?: boolean | string): boolean;
 
     function judgment(e: any, t?: any, o?: any): any;
 
-    function loadjs(e: any, t?: any, o?: any): void;
+    function loadjs(e: string, t?: any, o?: any): void;
 
-    function lockTouch(): any;
+    function lockTouch(): void;
 
-    function log(e?: any, t?: any): void;
+    function log(e?: string, t?: any): void;
 
     function logs(...args: any[]): void;
 
     function noop(): void;
 
-    function open(e?: any): void;
+    function open(e?: string): void;
 
     function paramsName(e?: any): any;
 
     function randomA2B(e?: any, t?: any, o?: any): any;
 
-    function randomColor(): any;
+    function randomColor(): string;
 
-    function randomFromA2B(e?: any, t?: any, o?: any): any;
+    function randomFromA2B(e?: number, t?: number, o?: number): number;
 
-    function randomFromArray(e?: any): any;
+    function randomFromArray(e?: any[]): any;
 
-    function randomKey(e?: any): any;
+    function randomKey(e?: number): string;
 
     function randomfArr(e?: any): any;
 
-    function removeConsole(e?: any): void;
+    function removeConsole(e?: string|boolean): void;
 
-    function setCookie(e: any, t?: any, o?: any): void;
+    function setCookie(e: string, t?: any, o?: any): void;
 
     function setTimesout(...args: any[]): any;
 
-    function setUrlParam(e: any, t?: any, o?: any): any;
+    function setUrlParam(e: any, t?: any, o?: string): string;
 
     function toJSON(res: any): any;
+
+    function toArray(obj, dot): any;
 
     function toJson(res: any): any;
 
     function tojson(res: any): any;
 
-    function trigger(e: any, t?: any, o?: any): any;
+    function trigger(e: any, t?: any, o?: string): any;
 
-    function ua(e?: any): any;
+    function ua(e?: any): string;
 
-    function uuid(): any;
+    function uuid(): string;
 }
 
 export default ppo;
