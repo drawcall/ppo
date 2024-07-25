@@ -17,8 +17,6 @@ ppo little poor, gzip less than **3k**, so a library you can use it anytime, any
 
 #### Install using npm
 
-[![anix](https://nodei.co/npm/ppo.png)](https://npmjs.org/package/ppo)
-
 ```shell
 npm install ppo --save
 
