@@ -49,7 +49,7 @@
     }
 
     ppo.isPC = function () {
-        return !this.isMobile();
+        return !ppo.isMobile();
     }
 
     ppo.isWeixin = function () {
@@ -167,7 +167,7 @@
         a.style.display = 'none';
 
         if (!a.parentNode) document.body.appendChild(a);
-        this.trigger(a, 'click', 'MouseEvents');
+        ppo.trigger(a, 'click', 'MouseEvents');
     }
 
     /**
@@ -227,8 +227,11 @@
     * https://www.zhihu.com/question/28912825
     */
     ppo.paramsName = function (fn) {
-        return /\(\s*([\s\S]*?)\s*\)/.exec(fn.toString())[1].split(/\s*,\s*/);
+        var match = /\(\s*([\s\S]*?)\s*\)/.exec(fn.toString());
+        if (!match || !match[1].trim()) return [];
+        return match[1].split(/\s*,\s*/);
     }
+
 
     /************************************************************************
     * Date
@@ -377,7 +380,7 @@
     }
 
     ppo.deleteCookie = ppo.delCookie = function (name) {
-        this.setCookie(name, "", { hour: -1 });
+        ppo.setCookie(name, "", { hour: -1 });
     }
 
 
@@ -417,9 +420,9 @@
         return num < 10 ? '0' + num : num;
     }
 
-    ppo.currency = function (val) {
-        m = m || 0;
-        return Math.floor(n * Math.pow(10, m)) / Math.pow(10, m);
+    ppo.currency = function (val, m) {
+        m = m || 2;  
+        return Math.round(val * Math.pow(10, m)) / Math.pow(10, m);
     }
 
     /************************************************************************
@@ -514,7 +517,7 @@
     * map condition judge 
     */
     ppo.judge = ppo.judgment = function (v, vals, strict) {
-        if (!this.isTypeof(vals, 'array')) return false;
+        if (!ppo.isTypeof(vals, 'array')) return false;
 
         for (var key in vals) {
             if (strict) {
@@ -540,20 +543,32 @@
     * to json
     */
     ppo.toJSON = ppo.tojson = ppo.toJson = function (res) {
-        if (!res) return null;
-
-        if (typeof res == 'string') {
+        if (!res && res !== 0 && res !== false) return null;
+        if (typeof res === 'object') {
+            return ppo.isTypeof(res.json, 'function') ? res.json() : res;
+        }
+        
+        if (typeof res === 'string') {
+            res = res.trim();
+            if (!res) return null;
+            
             try {
                 return JSON.parse(res);
             } catch (e) {
-                return eval('(' + res + ')');
+                if (/^[\s]*[\{\[][\s\S]*[\}\]][\s]*$/.test(res)) {
+                    try {
+                        return JSON.parse(res.replace(/'/g, '"').replace(/,(\s*[}\]])/g, '\$1'));
+                    } catch (e2) {
+                        console.warn && console.warn('PPO: Invalid JSON string, returning null');
+                        return null;
+                    }
+                }
+                return null;
             }
-        } else if (this.isTypeof(res.json, 'function')) {
-            return res.json();
-        } else {
-            return res;
         }
-    }
+        
+        return res;
+    };
 
     /**
     * to array
@@ -637,6 +652,7 @@
             script.onreadystatechange = function () {
                 if (this.readyState == "loaded" || this.readyState == "complete") {
                     callback();
+                    script.onreadystatechange = null;
                 }
             };
         } else if (/gecko/.test(ppo.ua('l'))) {
